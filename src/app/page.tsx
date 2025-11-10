@@ -14,11 +14,14 @@ import {
   ArrowRight,
   BadgeCheck,
   BellRing,
+  CircleFadingPlus,
   Dot,
   HeartIcon,
   House,
+  Logs,
   MapPin,
   Search,
+  Send,
   SlidersHorizontal,
   Star,
   VerifiedIcon,
@@ -40,12 +43,11 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function Home() {
   return (
-    <div className="flex flex-col m-5 max-h-dvh gap-3">
-      <div className="flex gap-3">
+    <div className="flex flex-col pt-3 mx-5 gap-3 relative h-dvh">
+      <div className="flex gap-3 w-full">
         <InputGroup className="bg-white outline-none">
           <InputGroupInput placeholder="Buscar serviços..." />
           <InputGroupAddon>
@@ -73,7 +75,7 @@ export default function Home() {
               <BellRing className="text-black" />
             </Button>
           </SheetTrigger>
-          <SheetContent className="bg-darkblue border-none shadow-lightblue shadow-2xl">
+          <SheetContent className="bg-darkblue border-none shadow-lightblue shadow-2xl w-[90%]">
             <div className="mt-10 mx-5">
               <Card className="relative">
                 <Dot className="text-red-500 size-25 absolute -right-12 -top-12" />
@@ -141,135 +143,137 @@ export default function Home() {
 
       {/* FIX TAMANHO DO SCROLLAREA */}
 
-      <ScrollArea className="h-[450px]">
-        <div className="flex flex-col gap-3">
-          <Card>
-            <CardContent className="flex flex-col gap-3">
-              <CardTitle className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage
-                      src="https://github.com/maxleiter.png"
-                      alt="@maxleiter"
-                    />
-                    <AvatarFallback>LR</AvatarFallback>
-                  </Avatar>
-                  John Doe
-                  <VerifiedIcon className="text-lightblue" />
-                </div>
-                <p className="flex items-center gap-1">
-                  5.0 <Star className="text-yellow-400" />
-                </p>
-              </CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                officiis, quod harum veritatis molestiae doloribus explicabo
-                laudantium ducimus corporis ullam aspernatur nobis. Voluptatum
-                ducimus quidem quo, praesentium vero id? Fugiat.
-              </CardDescription>
-              <CardFooter className="flex items-center justify-center px-5 gap-4">
-                <Button className="bg-lightblue w-full">
-                  Entrar em contato
-                </Button>
-                <ToggleGroup type="single">
-                  <ToggleGroupItem
-                    value="heart"
-                    aria-label="Toggle heart"
-                    className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
-                  >
-                    <HeartIcon />
-                  </ToggleGroupItem>
-                </ToggleGroup>
-              </CardFooter>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="flex flex-col gap-3">
-              <CardTitle className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage
-                      src="https://github.com/maxleiter.png"
-                      alt="@maxleiter"
-                    />
-                    <AvatarFallback>LR</AvatarFallback>
-                  </Avatar>
-                  John Doe
-                  <VerifiedIcon className="text-lightblue" />
-                </div>
-                <p className="flex items-center gap-1">
-                  5.0 <Star className="text-yellow-400" />
-                </p>
-              </CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                officiis, quod harum veritatis molestiae doloribus explicabo
-                laudantium ducimus corporis ullam aspernatur nobis. Voluptatum
-                ducimus quidem quo, praesentium vero id? Fugiat.
-              </CardDescription>
-              <CardFooter className="flex items-center justify-center px-5 gap-4">
-                <Button className="bg-lightblue w-full">
-                  Entrar em contato
-                </Button>
-                <ToggleGroup type="single">
-                  <ToggleGroupItem
-                    value="heart"
-                    aria-label="Toggle heart"
-                    className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
-                  >
-                    <HeartIcon />
-                  </ToggleGroupItem>
-                </ToggleGroup>
-              </CardFooter>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="flex flex-col gap-3">
-              <CardTitle className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage
-                      src="https://github.com/maxleiter.png"
-                      alt="@maxleiter"
-                    />
-                    <AvatarFallback>LR</AvatarFallback>
-                  </Avatar>
-                  John Doe
-                  <VerifiedIcon className="text-lightblue" />
-                </div>
-                <p className="flex items-center gap-1">
-                  5.0 <Star className="text-yellow-400" />
-                </p>
-              </CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                officiis, quod harum veritatis molestiae doloribus explicabo
-                laudantium ducimus corporis ullam aspernatur nobis. Voluptatum
-                ducimus quidem quo, praesentium vero id? Fugiat.
-              </CardDescription>
-              <CardFooter className="flex items-center justify-center px-5 gap-4">
-                <Button className="bg-lightblue w-full">
-                  Entrar em contato
-                </Button>
-                <ToggleGroup type="single">
-                  <ToggleGroupItem
-                    value="heart"
-                    aria-label="Toggle heart"
-                    className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
-                  >
-                    <HeartIcon />
-                  </ToggleGroupItem>
-                </ToggleGroup>
-              </CardFooter>
-            </CardContent>
-          </Card>
-        </div>
-      </ScrollArea>
-      <footer className="flex items-center justify-between">
-        <House />
-        <House />
-        <House />
-        <House />
+      <div className="flex flex-col gap-3">
+        <Card>
+          <CardContent className="flex flex-col gap-3">
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Avatar>
+                  <AvatarImage
+                    src="https://github.com/maxleiter.png"
+                    alt="@maxleiter"
+                  />
+                  <AvatarFallback>LR</AvatarFallback>
+                </Avatar>
+                John Doe
+                <VerifiedIcon className="text-lightblue" />
+              </div>
+              <p className="flex items-center gap-1">
+                5.0 <Star className="text-yellow-400" />
+              </p>
+            </CardTitle>
+            <CardDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              officiis, quod harum veritatis molestiae doloribus explicabo
+              laudantium ducimus
+            </CardDescription>
+            <CardFooter className="flex items-center justify-center px-5 gap-4">
+              <Button className="bg-lightblue w-full">Entrar em contato</Button>
+              <ToggleGroup type="single">
+                <ToggleGroupItem
+                  value="heart"
+                  aria-label="Toggle heart"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
+                >
+                  <HeartIcon />
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </CardFooter>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex flex-col gap-3">
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Avatar>
+                  <AvatarImage
+                    src="https://github.com/maxleiter.png"
+                    alt="@maxleiter"
+                  />
+                  <AvatarFallback>LR</AvatarFallback>
+                </Avatar>
+                John Doe
+                <VerifiedIcon className="text-lightblue" />
+              </div>
+              <p className="flex items-center gap-1">
+                5.0 <Star className="text-yellow-400" />
+              </p>
+            </CardTitle>
+            <CardDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              officiis, quod harum veritatis molestiae doloribus explicabo
+              laudantium ducimus
+            </CardDescription>
+            <CardFooter className="flex items-center justify-center px-5 gap-4">
+              <Button className="bg-lightblue w-full">Entrar em contato</Button>
+              <ToggleGroup type="single">
+                <ToggleGroupItem
+                  value="heart"
+                  aria-label="Toggle heart"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
+                >
+                  <HeartIcon />
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </CardFooter>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex flex-col gap-3">
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Avatar>
+                  <AvatarImage
+                    src="https://github.com/maxleiter.png"
+                    alt="@maxleiter"
+                  />
+                  <AvatarFallback>LR</AvatarFallback>
+                </Avatar>
+                John Doe
+                <VerifiedIcon className="text-lightblue" />
+              </div>
+              <p className="flex items-center gap-1">
+                5.0 <Star className="text-yellow-400" />
+              </p>
+            </CardTitle>
+            <CardDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              officiis, quod harum veritatis molestiae doloribus explicabo
+              laudantium ducimus
+            </CardDescription>
+            <CardFooter className="flex items-center justify-center px-5 gap-4">
+              <Button className="bg-lightblue w-full">Entrar em contato</Button>
+              <ToggleGroup type="single">
+                <ToggleGroupItem
+                  value="heart"
+                  aria-label="Toggle heart"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
+                >
+                  <HeartIcon />
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </CardFooter>
+          </CardContent>
+        </Card>
+      </div>
+      {/* flex items-center justify-between w-full px-5 bg-darkblue fixed bottom-0 */}
+      <footer className=" fixed flex items-center justify-between w-full bottom-0 bg-darkblue right-0 px-2 pb-2">
+        <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
+          <House />
+          Início
+        </Button>
+        <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
+          <CircleFadingPlus />
+          Anunciar
+        </Button>
+        <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
+          <Send />
+          Mensagem
+        </Button>
+        <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
+          <Logs />
+          Menu
+        </Button>
       </footer>
     </div>
   );
