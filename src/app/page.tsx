@@ -1,3 +1,7 @@
+"use client";
+
+import * as React from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   InputGroup,
@@ -11,9 +15,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-  ArrowRight,
   BadgeCheck,
   BellRing,
+  Check,
+  ChevronsUpDown,
   CircleFadingPlus,
   Dot,
   HeartIcon,
@@ -44,8 +49,40 @@ import { Avatar } from "@/components/ui/avatar";
 import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Image from "next/image";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { cn } from "@/lib/utils";
+
+const estados = [
+  {
+    value: "todos",
+    label: "Todos os Estados",
+  },
+  {
+    value: "rioDeJaneiro",
+    label: "Rio de Janeiro",
+  },
+  {
+    value: "saoPaulo",
+    label: "São Paulo",
+  },
+];
 
 export default function Home() {
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
+
   return (
     <div className="flex flex-col pt-3 mx-5 gap-3 relative h-dvh">
       <div className="flex gap-3 w-full">
@@ -107,56 +144,89 @@ export default function Home() {
           </SheetContent>
         </Sheet>
       </div>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="bg-transparent hover:bg-transparent justify-start cursor-pointer">
-            <MapPin /> Procurando em Serra - ES <ArrowRight />
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="justify-between bg-transparent border-none text-white hover:bg-transparent hover:text-white cursor-pointer p-0"
+          >
+            <div className="flex items-center gap-3">
+              <MapPin />
+              {value
+                ? estados.find((estado) => estado.value === value)?.label
+                : "Selecione o seu Estado"}
+            </div>
+            <ChevronsUpDown className="opacity-50" />
           </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <h1>Filtro de cidade</h1>
-          <DialogClose asChild>
-            <Button>Fechar</Button>
-          </DialogClose>
-        </DialogContent>
-      </Dialog>
+        </PopoverTrigger>
+        <PopoverContent className="p-0">
+          <Command>
+            <CommandInput placeholder="Digite o Estado..." className="h-9" />
+            <CommandList>
+              <CommandEmpty>Estado não encontrado</CommandEmpty>
+              <CommandGroup>
+                {estados.map((estado) => (
+                  <CommandItem
+                    key={estado.value}
+                    value={estado.value}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    {estado.label}
+                    <Check
+                      className={cn(
+                        "ml-auto",
+                        value === estado.value ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
 
       <Separator />
 
       <Carousel>
         <CarouselContent className="flex">
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+            <Button className="bg-white text-black hover:bg-white cursor-pointer hover:scale-110">
               Limpeza
             </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+            <Button className="bg-white text-black hover:bg-white cursor-pointer hover:scale-110">
               Cuidados
             </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+            <Button className="bg-white text-black hover:bg-white cursor-pointer hover:scale-110">
               Carpinteiro
             </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+            <Button className="bg-white text-black hover:bg-white cursor-pointer hover:scale-110">
               Pintor
             </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+            <Button className="bg-white text-black hover:bg-white cursor-pointer hover:scale-110">
               Encanador
             </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+            <Button className="bg-white text-black hover:bg-white cursor-pointer hover:scale-110">
               Mecânico
             </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+            <Button className="bg-white text-black hover:bg-white cursor-pointer hover:scale-110">
               Fotógrafo
             </Button>
           </CarouselItem>
@@ -196,7 +266,7 @@ export default function Home() {
                 <ToggleGroupItem
                   value="heart"
                   aria-label="Toggle heart"
-                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent hover:bg-transparent"
                 >
                   <HeartIcon />
                 </ToggleGroupItem>
@@ -235,7 +305,7 @@ export default function Home() {
                 <ToggleGroupItem
                   value="heart"
                   aria-label="Toggle heart"
-                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent hover:bg-transparent"
                 >
                   <HeartIcon />
                 </ToggleGroupItem>
@@ -274,7 +344,7 @@ export default function Home() {
                 <ToggleGroupItem
                   value="heart"
                   aria-label="Toggle heart"
-                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent hover:bg-transparent"
                 >
                   <HeartIcon />
                 </ToggleGroupItem>
