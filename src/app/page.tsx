@@ -43,11 +43,19 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="flex flex-col pt-3 mx-5 gap-3 relative h-dvh">
       <div className="flex gap-3 w-full">
+        <Image
+          src="/assets/solvoo-logo.png"
+          alt="Logo"
+          width={100}
+          height={30}
+          priority={true}
+        />
         <InputGroup className="bg-white outline-none">
           <InputGroupInput placeholder="Buscar serviços..." />
           <InputGroupAddon>
@@ -57,7 +65,7 @@ export default function Home() {
 
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="bg-white hover:bg-white">
+            <Button className="bg-white hover:bg-white cursor-pointer">
               <SlidersHorizontal className="text-black" />
             </Button>
           </DialogTrigger>
@@ -71,7 +79,7 @@ export default function Home() {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button className="bg-white hover:bg-white">
+            <Button className="bg-white hover:bg-white cursor-pointer">
               <BellRing className="text-black" />
             </Button>
           </SheetTrigger>
@@ -101,7 +109,7 @@ export default function Home() {
       </div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="bg-transparent hover:bg-transparent justify-start">
+          <Button className="bg-transparent hover:bg-transparent justify-start cursor-pointer">
             <MapPin /> Procurando em Serra - ES <ArrowRight />
           </Button>
         </DialogTrigger>
@@ -112,38 +120,51 @@ export default function Home() {
           </DialogClose>
         </DialogContent>
       </Dialog>
+
       <Separator />
 
       <Carousel>
         <CarouselContent className="flex">
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black">Limpeza</Button>
+            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+              Limpeza
+            </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black">Cuidados</Button>
+            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+              Cuidados
+            </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black">Carpinteiro</Button>
+            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+              Carpinteiro
+            </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black">Pintor</Button>
+            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+              Pintor
+            </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black">Encanador</Button>
+            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+              Encanador
+            </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black">Mecânico</Button>
+            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+              Mecânico
+            </Button>
           </CarouselItem>
           <CarouselItem className="basis-auto">
-            <Button className="bg-white text-black">Fotógrafo</Button>
+            <Button className="bg-white text-black hover:bg-white cursor-pointer">
+              Fotógrafo
+            </Button>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
       <p className="text-white font-medium">Selecione um de nossos parceiros</p>
 
-      {/* FIX TAMANHO DO SCROLLAREA */}
-
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 pb-25">
         <Card>
           <CardContent className="flex flex-col gap-3">
             <CardTitle className="flex items-center justify-between">
@@ -168,12 +189,14 @@ export default function Home() {
               laudantium ducimus
             </CardDescription>
             <CardFooter className="flex items-center justify-center px-5 gap-4">
-              <Button className="bg-lightblue w-full">Entrar em contato</Button>
+              <Button className="bg-lightblue w-full cursor-pointer hover:bg-lightblue">
+                Entrar em contato
+              </Button>
               <ToggleGroup type="single">
                 <ToggleGroupItem
                   value="heart"
                   aria-label="Toggle heart"
-                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent"
                 >
                   <HeartIcon />
                 </ToggleGroupItem>
@@ -205,12 +228,14 @@ export default function Home() {
               laudantium ducimus
             </CardDescription>
             <CardFooter className="flex items-center justify-center px-5 gap-4">
-              <Button className="bg-lightblue w-full">Entrar em contato</Button>
+              <Button className="bg-lightblue w-full cursor-pointer hover:bg-lightblue">
+                Entrar em contato
+              </Button>
               <ToggleGroup type="single">
                 <ToggleGroupItem
                   value="heart"
                   aria-label="Toggle heart"
-                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent"
                 >
                   <HeartIcon />
                 </ToggleGroupItem>
@@ -242,12 +267,14 @@ export default function Home() {
               laudantium ducimus
             </CardDescription>
             <CardFooter className="flex items-center justify-center px-5 gap-4">
-              <Button className="bg-lightblue w-full">Entrar em contato</Button>
+              <Button className="bg-lightblue w-full cursor-pointer hover:bg-lightblue">
+                Entrar em contato
+              </Button>
               <ToggleGroup type="single">
                 <ToggleGroupItem
                   value="heart"
                   aria-label="Toggle heart"
-                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0"
+                  className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500 p-0 cursor-pointer focus:bg-transparent"
                 >
                   <HeartIcon />
                 </ToggleGroupItem>
@@ -256,22 +283,30 @@ export default function Home() {
           </CardContent>
         </Card>
       </div>
-      {/* flex items-center justify-between w-full px-5 bg-darkblue fixed bottom-0 */}
-      <footer className=" fixed flex items-center justify-between w-full bottom-0 bg-darkblue right-0 px-2 pb-2">
+
+      <footer className=" fixed flex items-center justify-between w-full bottom-0 bg-darkblue right-0 px-4 pb-2 border-t-1 ">
         <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
-          <House />
+          <div className="bg-lightblue p-2 rounded-lg">
+            <House />
+          </div>
           Início
         </Button>
         <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
-          <CircleFadingPlus />
+          <div className="p-2 rounded-lg">
+            <CircleFadingPlus />
+          </div>
           Anunciar
         </Button>
         <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
-          <Send />
+          <div className="p-2 rounded-lg">
+            <Send />
+          </div>
           Mensagem
         </Button>
         <Button className="flex flex-col gap-1 h-auto bg-transparent hover:bg-transparent">
-          <Logs />
+          <div className="p-2 rounded-lg">
+            <Logs />
+          </div>
           Menu
         </Button>
       </footer>
