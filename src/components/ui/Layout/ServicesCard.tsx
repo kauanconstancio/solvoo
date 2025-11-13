@@ -104,11 +104,11 @@ export default function ServicersCard({
               </p>
             </CardTitle>
             <div>
-              <h3 className="text-white font-semibold mb-1">{service.title}</h3>
+              <h3 className="text-black font-semibold mb-1">{service.title}</h3>
               <CardDescription>{service.description}</CardDescription>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-white font-medium">
+              <span className="text-black font-medium">
                 {formatPrice(service.price)}
               </span>
               <span className="text-gray-400">{service.city}</span>
