@@ -6,7 +6,14 @@ import { Popover } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown, MapPin } from "lucide-react";
 import { PopoverContent, PopoverTrigger } from "../popover";
 import { Button } from "../button";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../command";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "../command";
 import { cn } from "@/lib/utils";
 
 const estados = [
@@ -24,9 +31,21 @@ const estados = [
   },
 ];
 
-export default function CityFilter() {
+interface CityFilterProps {
+  onEstadoChange?: (estado: string | null) => void;
+}
+
+export default function CityFilter({ onEstadoChange }: CityFilterProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+
+  const handleSelect = (currentValue: string) => {
+    const newValue = currentValue === value ? "" : currentValue;
+    setValue(newValue);
+    setOpen(false);
+    onEstadoChange?.(newValue || null);
+  };
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -55,10 +74,7 @@ export default function CityFilter() {
                 <CommandItem
                   key={estado.value}
                   value={estado.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    setOpen(false);
-                  }}
+                  onSelect={handleSelect}
                 >
                   {estado.label}
                   <Check

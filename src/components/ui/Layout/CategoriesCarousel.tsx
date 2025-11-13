@@ -1,45 +1,52 @@
+"use client";
+
 import { Button } from "../button";
 import { Carousel, CarouselContent, CarouselItem } from "../carousel";
+import { cn } from "@/lib/utils";
+import { useApp } from "@/contexts/AppContext";
 
-export default function CategoriesCarousel() {
+const categories = [
+  "Limpeza",
+  "Cuidados",
+  "Carpinteiro",
+  "Pintor",
+  "Encanador",
+  "Mecânico",
+  "Fotógrafo",
+];
+
+interface CategoriesCarouselProps {
+  onCategoryChange?: (category: string | null) => void;
+}
+
+export default function CategoriesCarousel({
+  onCategoryChange,
+}: CategoriesCarouselProps) {
+  const { selectedCategory, setSelectedCategory } = useApp();
+
+  const handleCategoryClick = (category: string) => {
+    const newSelected = selectedCategory === category ? null : category;
+    setSelectedCategory(newSelected);
+    onCategoryChange?.(newSelected);
+  };
+
   return (
     <Carousel>
       <CarouselContent className="flex">
-        <CarouselItem className="basis-auto">
-          <Button className="bg-white text-black hover:bg-white cursor-pointer">
-            Limpeza
-          </Button>
-        </CarouselItem>
-        <CarouselItem className="basis-auto">
-          <Button className="bg-white text-black hover:bg-white cursor-pointer">
-            Cuidados
-          </Button>
-        </CarouselItem>
-        <CarouselItem className="basis-auto">
-          <Button className="bg-white text-black hover:bg-white cursor-pointer">
-            Carpinteiro
-          </Button>
-        </CarouselItem>
-        <CarouselItem className="basis-auto">
-          <Button className="bg-white text-black hover:bg-white cursor-pointer">
-            Pintor
-          </Button>
-        </CarouselItem>
-        <CarouselItem className="basis-auto">
-          <Button className="bg-white text-black hover:bg-white cursor-pointer">
-            Encanador
-          </Button>
-        </CarouselItem>
-        <CarouselItem className="basis-auto">
-          <Button className="bg-white text-black hover:bg-white cursor-pointer">
-            Mecânico
-          </Button>
-        </CarouselItem>
-        <CarouselItem className="basis-auto">
-          <Button className="bg-white text-black hover:bg-white cursor-pointer">
-            Fotógrafo
-          </Button>
-        </CarouselItem>
+        {categories.map((category) => (
+          <CarouselItem key={category} className="basis-auto">
+            <Button
+              onClick={() => handleCategoryClick(category)}
+              className={cn(
+                "bg-white text-black hover:bg-white cursor-pointer transition-all",
+                selectedCategory === category &&
+                  "bg-lightblue text-white hover:bg-lightblue"
+              )}
+            >
+              {category}
+            </Button>
+          </CarouselItem>
+        ))}
       </CarouselContent>
     </Carousel>
   );
