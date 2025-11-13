@@ -6,56 +6,34 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  BadgeCheck,
-  BellRing,
-  Dot,
-  Search,
-  SlidersHorizontal,
-} from "lucide-react";
+import { BadgeCheck, BellRing, Dot, Search } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <div className="flex gap-3 w-full">
-      <Image
-        src="/assets/solvoo-logo.png"
-        alt="Logo"
-        width={100}
-        height={30}
-        priority={true}
-      />
+      <Link href="/" className="flex items-center justify-center" prefetch>
+        <Image
+          src="/assets/solvoo-logo.png"
+          alt="Logo"
+          width={100}
+          height={60}
+          priority={true}
+          className="cursor-pointer"
+        />
+      </Link>
       <InputGroup className="bg-white outline-none">
         <InputGroupInput placeholder="Buscar serviços..." />
         <InputGroupAddon>
           <Search />
         </InputGroupAddon>
       </InputGroup>
-
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="bg-white hover:bg-white cursor-pointer">
-            <SlidersHorizontal className="text-black" />
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <h1>Filtro de pesquisa!</h1>
-          <DialogClose asChild className="">
-            <Button>Fechar</Button>
-          </DialogClose>
-        </DialogContent>
-      </Dialog>
 
       <Sheet>
         <SheetTrigger asChild>
