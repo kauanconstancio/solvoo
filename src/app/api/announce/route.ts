@@ -1,5 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
+type Announcement = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  estado?: string;
+  cidade?: string;
+  price: number;
+  createdAt: string;
+  userId: string;
+};
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -28,6 +40,7 @@ export async function POST(request: NextRequest) {
     // Por enquanto, apenas retorna o anúncio criado
     return NextResponse.json(newAnnounce, { status: 201 });
   } catch (error) {
+    console.error("Erro ao criar anúncio:", error);
     return NextResponse.json(
       { error: "Erro ao criar anúncio" },
       { status: 500 }
@@ -42,7 +55,7 @@ export async function GET(request: NextRequest) {
 
     // TODO: Buscar anúncios do banco de dados
     // Por enquanto, retorna array vazio
-    const announcements = [];
+    const announcements: Announcement[] = [];
 
     if (userId) {
       // Filtrar por usuário se fornecido
@@ -51,10 +64,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(announcements, { status: 200 });
   } catch (error) {
+    console.error("Erro ao buscar anúncios:", error);
     return NextResponse.json(
       { error: "Erro ao buscar anúncios" },
       { status: 500 }
     );
   }
 }
-
