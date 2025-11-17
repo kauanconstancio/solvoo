@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
+type Message = {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  receiverId?: string;
+  content: string;
+  timestamp: string;
+  read: boolean;
+};
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -8,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     // TODO: Buscar mensagens do banco de dados
     // Por enquanto, retorna array vazio
-    const messages = [];
+    const messages: Message[] = [];
 
     if (conversationId) {
       // Buscar mensagens de uma conversa específica
@@ -20,6 +30,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(messages, { status: 200 });
   } catch (error) {
+    console.error("Erro ao buscar mensagens:", error);
     return NextResponse.json(
       { error: "Erro ao buscar mensagens" },
       { status: 500 }
@@ -51,13 +62,13 @@ export async function POST(request: NextRequest) {
 
     // TODO: Salvar no banco de dados
     // TODO: Enviar notificação em tempo real (WebSocket, etc.)
-    
+
     return NextResponse.json(newMessage, { status: 201 });
   } catch (error) {
+    console.error("Erro ao enviar mensagem:", error);
     return NextResponse.json(
       { error: "Erro ao enviar mensagem" },
       { status: 500 }
     );
   }
 }
-
