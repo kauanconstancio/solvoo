@@ -24,6 +24,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(filteredServices, { status: 200 });
   } catch (error) {
+    console.error("Erro ao buscar serviços:", error);
     return NextResponse.json(
       { error: "Erro ao buscar serviços" },
       { status: 500 }
@@ -52,10 +53,10 @@ export async function POST(request: NextRequest) {
     // Por enquanto, apenas retorna o serviço criado
     return NextResponse.json(newService, { status: 201 });
   } catch (error) {
+    console.error("Erro ao criar serviço:", error);
     return NextResponse.json(
       { error: "Erro ao criar serviço" },
       { status: 500 }
     );
   }
 }
-
