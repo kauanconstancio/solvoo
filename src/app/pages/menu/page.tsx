@@ -10,12 +10,14 @@ export default function Menu() {
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        </Avatar> 
         <div className="flex flex-col">
           <h2 className="text-white font-semibold flex items-center gap-1">
             John Doe <Verified className="text-lightblue" />
           </h2>
-          <p className="text-lightblue text-sm">Ver perfil</p>
+          <p className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent text-sm">
+            Ver perfil
+          </p>
         </div>
       </div>
       <div className="flex flex-col gap-2">

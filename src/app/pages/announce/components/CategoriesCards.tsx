@@ -16,7 +16,7 @@ export default function CategoriesCards() {
       {categories.map((category) => (
         <Link
           key={category}
-          href={`/announce/new?category=${encodeURIComponent(category)}`}
+          href={`/pages/announce/new?category=${encodeURIComponent(category)}`}
           className="
             px-4 py-3 rounded-lg text-sm font-medium transition-all
             bg-white text-lightblue border border-transparent

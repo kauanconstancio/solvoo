@@ -15,7 +15,9 @@ export default function FooterMenu() {
 
   const getIconWrapperClasses = (href: string) =>
     `p-2 rounded-lg ${
-      pathname === href ? "bg-lightblue text-white" : "bg-transparent"
+      pathname === href
+        ? "bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white"
+        : "bg-transparent"
     }`;
 
   return (

@@ -1,14 +1,21 @@
 import { Separator } from "@/components/ui/separator";
 import { X } from "lucide-react";
 import Link from "next/link";
-import CategoriesCards from "./components/CategoriesCards";
 import FooterMenu from "@/components/ui/Layout/FooterMenu";
+import AnnounceForm from "./components/AnnounceForm";
 
-export default function Announce() {
+export default async function NewAnnounce({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const params = await searchParams;
+  const category = params?.category || "Categoria";
+
   return (
     <div className="min-h-screen bg-darkblue pb-24">
       <div className="flex flex-col gap-3 pt-3 mx-5">
-        <Link href="/" prefetch>
+        <Link href="/announce" prefetch>
           <button className="flex gap-2 text-white cursor-pointer">
             <X />
             Criar Anúncio
@@ -16,14 +23,12 @@ export default function Announce() {
         </Link>
         <Separator />
         <p className="text-white font-medium text-xl">
-          Divulgue agora o seu serviço e conquiste clientes com o nosso Sistema
-          de{" "}
+          Criando anúncio para:{" "}
           <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
-            Gerenciamento de Anúncios
+            {category}
           </span>
-          .
         </p>
-        <CategoriesCards />
+        <AnnounceForm category={category} />
       </div>
     </div>
   );
