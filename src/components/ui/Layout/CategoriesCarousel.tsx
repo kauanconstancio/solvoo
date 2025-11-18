@@ -40,7 +40,7 @@ export default function CategoriesCarousel({
               className={cn(
                 "bg-white text-black hover:bg-white cursor-pointer transition-all",
                 selectedCategory === category &&
-                  "bg-lightblue text-white hover:bg-lightblue"
+                  "bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white"
               )}
             >
               {category}
