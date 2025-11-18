@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Solvoo - Marketplace de Serviços",
   description: "Encontre os melhores profissionais para seus serviços",
+  icons: {
+    icon: "/solvoo_favicon.png",
+  },
 };
 
 export default function RootLayout({

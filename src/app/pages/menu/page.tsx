@@ -10,7 +10,7 @@ export default function Menu() {
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
-        </Avatar> 
+        </Avatar>
         <div className="flex flex-col">
           <h2 className="text-white font-semibold flex items-center gap-1">
             John Doe <Verified className="text-lightblue" />
@@ -54,10 +54,11 @@ export default function Menu() {
         <p className="flex justify-between items-center text-white cursor-pointer py-2">
           Ajuda <ChevronRight />
         </p>
-        <p className="flex justify-between items-center text-white cursor-pointer py-2">
+        {/* somente para android */}
+        {/* <p className="flex justify-between items-center text-white cursor-pointer py-2">
           Avalie na Google Play
           <ChevronRight />
-        </p>
+        </p> */}
         <p className="flex justify-between items-center text-white cursor-pointer py-2">
           Sair <ChevronRight />
         </p>
