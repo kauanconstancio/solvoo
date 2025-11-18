@@ -15,21 +15,9 @@ import {
   CommandList,
 } from "../command";
 import { cn } from "@/lib/utils";
+import { estadosComTodos } from "@/lib/estados";
 
-const estados = [
-  {
-    value: "todos",
-    label: "Todos os Estados",
-  },
-  {
-    value: "rioDeJaneiro",
-    label: "Rio de Janeiro",
-  },
-  {
-    value: "saoPaulo",
-    label: "São Paulo",
-  },
-];
+const estados = estadosComTodos;
 
 interface CityFilterProps {
   onEstadoChange?: (estado: string | null) => void;

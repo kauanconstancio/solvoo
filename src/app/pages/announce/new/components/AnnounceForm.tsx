@@ -15,13 +15,9 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Check, ChevronsUpDown, MapPin } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const estados = [
-  { value: "rioDeJaneiro", label: "Rio de Janeiro" },
-  { value: "saoPaulo", label: "São Paulo" },
-];
+import { estados } from "@/lib/estados";
 
 interface AnnounceFormProps {
   category: string;
