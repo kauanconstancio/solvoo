@@ -37,38 +37,107 @@ export default function AnnounceForm({ category }: AnnounceFormProps) {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const handleEstadoSelect = (value: string) => {
     setFormData({ ...formData, estado: value });
     setOpenEstado(false);
+    if (errors.estado) {
+      setErrors((prev) => ({ ...prev, estado: "" }));
+    }
+  };
+
+  const validateField = (field: string, value: string) => {
+    switch (field) {
+      case "title":
+        if (!value.trim()) {
+          return "Título é obrigatório";
+        }
+        if (value.trim().length < 5) {
+          return "Título deve ter no mínimo 5 caracteres";
+        }
+        if (value.trim().length > 60) {
+          return "Título deve ter no máximo 60 caracteres";
+        }
+        return "";
+      case "description":
+        if (!value.trim()) {
+          return "Descrição é obrigatória";
+        }
+        if (value.trim().length < 20) {
+          return "Descrição deve ter no mínimo 20 caracteres";
+        }
+        if (value.trim().length > 200) {
+          return "Descrição deve ter no máximo 200 caracteres";
+        }
+        return "";
+      case "cidade":
+        if (!value.trim()) {
+          return "Cidade é obrigatória";
+        }
+        if (value.trim().length < 2) {
+          return "Cidade deve ter no mínimo 2 caracteres";
+        }
+        if (/^\d+$/.test(value.trim())) {
+          return "Cidade não pode conter apenas números";
+        }
+        if (!/^[a-zA-ZÀ-ÿ\s'-]+$/.test(value.trim())) {
+          return "Cidade contém caracteres inválidos";
+        }
+        return "";
+      case "price":
+        if (!value.trim()) {
+          return "Preço é obrigatório";
+        }
+        const priceNum = parseFloat(value);
+        if (isNaN(priceNum)) {
+          return "Preço deve ser um número válido";
+        }
+        if (priceNum <= 0) {
+          return "Preço deve ser maior que zero";
+        }
+        if (priceNum > 1000000) {
+          return "Preço não pode ser maior que R$ 1.000.000,00";
+        }
+        if (!/^\d+(\.\d{1,2})?$/.test(value.trim())) {
+          return "Preço deve ter no máximo 2 casas decimais";
+        }
+        return "";
+      case "estado":
+        if (!value) {
+          return "Estado é obrigatório";
+        }
+        return "";
+      default:
+        return "";
+    }
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    const value = formData[field as keyof typeof formData];
+    const error = validateField(field, value);
+    setErrors((prev) => ({ ...prev, [field]: error }));
   };
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.title.trim()) {
-      newErrors.title = "Título é obrigatório";
-    }
-
-    if (!formData.description.trim()) {
-      newErrors.description = "Descrição é obrigatória";
-    }
-
-    if (!formData.estado) {
-      newErrors.estado = "Estado é obrigatório";
-    }
-
-    if (!formData.cidade.trim()) {
-      newErrors.cidade = "Cidade é obrigatória";
-    }
-
-    if (!formData.price.trim()) {
-      newErrors.price = "Preço é obrigatório";
-    } else if (isNaN(parseFloat(formData.price)) || parseFloat(formData.price) <= 0) {
-      newErrors.price = "Preço deve ser um número válido maior que zero";
-    }
+    Object.keys(formData).forEach((field) => {
+      const value = formData[field as keyof typeof formData];
+      const error = validateField(field, value);
+      if (error) {
+        newErrors[field] = error;
+      }
+    });
 
     setErrors(newErrors);
+    setTouched(
+      Object.keys(formData).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {} as Record<string, boolean>
+      )
+    );
     return Object.keys(newErrors).length === 0;
   };
 
@@ -130,9 +199,17 @@ export default function AnnounceForm({ category }: AnnounceFormProps) {
           onChange={(e) => {
             const value = e.target.value.slice(0, 60);
             setFormData({ ...formData, title: value });
+            if (touched.title && errors.title) {
+              const error = validateField("title", value);
+              setErrors((prev) => ({ ...prev, title: error }));
+            }
           }}
+          onBlur={() => handleBlur("title")}
           maxLength={60}
-          className="bg-white text-darkblue"
+          className={cn(
+            "bg-white text-darkblue",
+            errors.title && touched.title && "border-red-500 focus-visible:border-red-500"
+          )}
           aria-invalid={!!errors.title}
         />
         {errors.title && (
@@ -156,9 +233,17 @@ export default function AnnounceForm({ category }: AnnounceFormProps) {
           onChange={(e) => {
             const value = e.target.value.slice(0, 200);
             setFormData({ ...formData, description: value });
+            if (touched.description && errors.description) {
+              const error = validateField("description", value);
+              setErrors((prev) => ({ ...prev, description: error }));
+            }
           }}
+          onBlur={() => handleBlur("description")}
           maxLength={200}
-          className="bg-white text-darkblue min-h-32"
+          className={cn(
+            "bg-white text-darkblue min-h-32",
+            errors.description && touched.description && "border-red-500 focus-visible:border-red-500"
+          )}
           aria-invalid={!!errors.description}
         />
         {errors.description && (
@@ -232,9 +317,17 @@ export default function AnnounceForm({ category }: AnnounceFormProps) {
           onChange={(e) => {
             const value = e.target.value.slice(0, 50);
             setFormData({ ...formData, cidade: value });
+            if (touched.cidade && errors.cidade) {
+              const error = validateField("cidade", value);
+              setErrors((prev) => ({ ...prev, cidade: error }));
+            }
           }}
+          onBlur={() => handleBlur("cidade")}
           maxLength={50}
-          className="bg-white text-darkblue"
+          className={cn(
+            "bg-white text-darkblue",
+            errors.cidade && touched.cidade && "border-red-500 focus-visible:border-red-500"
+          )}
           aria-invalid={!!errors.cidade}
         />
         {errors.cidade && (
@@ -251,10 +344,22 @@ export default function AnnounceForm({ category }: AnnounceFormProps) {
           type="number"
           step="0.01"
           min="0"
+          max="1000000"
           placeholder="0.00"
           value={formData.price}
-          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-          className="bg-white text-darkblue"
+          onChange={(e) => {
+            const value = e.target.value;
+            setFormData({ ...formData, price: value });
+            if (touched.price && errors.price) {
+              const error = validateField("price", value);
+              setErrors((prev) => ({ ...prev, price: error }));
+            }
+          }}
+          onBlur={() => handleBlur("price")}
+          className={cn(
+            "bg-white text-darkblue",
+            errors.price && touched.price && "border-red-500 focus-visible:border-red-500"
+          )}
           aria-invalid={!!errors.price}
         />
         {errors.price && (

@@ -1,7 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { X } from "lucide-react";
 import Link from "next/link";
-import FooterMenu from "@/components/ui/Layout/FooterMenu";
 import AnnounceForm from "./components/AnnounceForm";
 
 export default async function NewAnnounce({

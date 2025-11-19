@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         destination: "/pages/announce",
       },
       {
+        source: "/announce/new",
+        destination: "/pages/announce/new",
+      },
+      {
         source: "/message",
         destination: "/pages/message",
       },

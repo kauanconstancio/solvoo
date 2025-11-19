@@ -114,7 +114,7 @@ export default function ServicersCard({
               <span className="text-gray-400">{service.city}</span>
             </div>
             <CardFooter className="flex items-center justify-center px-5 gap-4">
-              <Button className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white hover:opacity-90bg-lightblue w-full cursor-pointer hover:bg-lightblue">
+              <Button className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white hover:opacity-90bg-lightblue w-full cursor-pointer">
                 Entrar em contato
               </Button>
               <ToggleGroup

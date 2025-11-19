@@ -2,7 +2,6 @@ import { Separator } from "@/components/ui/separator";
 import { X } from "lucide-react";
 import Link from "next/link";
 import CategoriesCards from "./components/CategoriesCards";
-import FooterMenu from "@/components/ui/Layout/FooterMenu";
 
 export default function Announce() {
   return (
